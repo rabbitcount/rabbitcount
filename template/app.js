@@ -29,16 +29,16 @@
 //    });
 //}
 
-var testForm = {};
-testForm.partial = "partial/test-form.html"
-
-var form = {};
-form.partial = "partial/form.html"
-
-miniSPA.changeUrl();    //initialize
-
-
-function createUser() {
-    alert("rabbit");
-}
+//var testForm = {};
+//testForm.partial = "partial/test-form.html"
+//
+//var form = {};
+//form.partial = "partial/form.html"
+//
+//miniSPA.changeUrl();    //initialize
+//
+//
+//function createUser() {
+//    alert("rabbit");
+//}
 

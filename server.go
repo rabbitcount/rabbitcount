@@ -17,7 +17,7 @@ func main() {
 
 	routes := mux.NewRouter()
 	// http://localhost:8000/api/user/create?user=jaliat&first=Gao&last=Xiang&email=gxbit2006@163.com
-	routes.HandleFunc("/api/user/create", CreateUser).Methods("GET")
+	routes.HandleFunc("/api/user/create", CreateUser).Methods("POST")
 	// http://localhost:8000/api/user/1
 	routes.HandleFunc("/api/user/{id}", GetUser).Methods("GET")
 

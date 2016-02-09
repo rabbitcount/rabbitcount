@@ -8,10 +8,14 @@ import (
 	"database/sql"
 	"github.com/gorilla/mux"
 
-	"io"
+//	"io"
+//	"io/ioutil"
+//	"path"
+//	"strconv"
+	"strconv"
 	"io/ioutil"
 	"path"
-	"strconv"
+	"io"
 )
 
 type User struct {
@@ -37,7 +41,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	//
 	//	}
 
-	r.ParseForm()
+//	r.ParseForm()
+	r.ParseMultipartForm(1000000)
 
 	newUser := User{}
 
@@ -81,29 +86,71 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println(strconv.FormatInt(userId,10))
+
+//	file1, header1, err1 := r.FormFile("file-1")
+//	m := r.MultipartForm
+//	r.MultipartForm.File
+//	files1 := m.File["avatarFile"]
+//	fil
+
+//	r.MultipartForm
+
 	// read upload file
-	file, header, err := r.FormFile("avatarFile")
-//	err.Error()
-	if err != nil {
-		log.Println( err.Error())
+	// FormFile 返回form中的第一个file
+	// FormFile returns the first file for the provided form key.
+	// FormFile calls ParseMultipartForm and ParseForm if necessary.
+//	file, header, err := r.FormFile("avatarFile")
+////	err.Error()
+//	if err != nil {
+//		log.Println( err.Error())
+////		io.WriteString(w, err.Error())
+//		return
+//	}
+//	data, err := ioutil.ReadAll(file)
+//	if err != nil {
 //		io.WriteString(w, err.Error())
-		return
-	}
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		io.WriteString(w, err.Error())
-		return
-	}
+//		return
+//	}
+//
+//	filename := path.Join("/tmp/avatars", strconv.FormatInt(userId,10) + path.Ext(header.Filename))
+//	log.Println(filename)
+//	err = ioutil.WriteFile(filename, data, 0777)
+//	if err != nil {
+//		io.WriteString(w, err.Error())
+//		return }
+//	io.WriteString(w, "Successful")
 
-	filename := path.Join("/tmp/avatars", strconv.FormatInt(userId,10) + path.Ext(header.Filename))
-	log.Println(filename)
-	err = ioutil.WriteFile(filename, data, 0777)
-	if err != nil {
-		io.WriteString(w, err.Error())
-		return }
+//	file, header, err := r.MultipartForm.File["attachments"]
+//	if err != nil {
+//		log.Println( err.Error())
+//		return
+//	}
+
+//	m := r.MultipartForm // .File["attachments"]
+//	m.File
+	log.Println("test")
+
+	m := r.MultipartForm
+	// []*FileHeader
+	files := m.File["attachments"]
+	// files <- []*FileHeader
+	for index, header := range files {
+		filename := path.Join("/tmp/avatars", strconv.FormatInt(userId, 10) + strconv.Itoa(index) + path.Ext(header.Filename))
+		f, err := header.Open()
+		data, err := ioutil.ReadAll(f)
+		if err != nil {
+			io.WriteString(w, err.Error())
+			return
+		}
+		log.Println(filename)
+		err = ioutil.WriteFile(filename, data, 0777)
+		if err != nil {
+			io.WriteString(w, err.Error())
+			return
+		}
+	}
 	io.WriteString(w, "Successful")
-
-
 }
 
 func GetUser(w http.ResponseWriter, r *http.Request) {

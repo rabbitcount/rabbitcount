@@ -24,6 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
+    <link rel="stylesheet" href="upload/css/fileinput.min.css" media="all">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -319,11 +321,24 @@ desired effect
                             <label for="last">Last</label>
                             <input type="text" class="form-control" id="last" name="last" placeholder="Enter last" value="Suffere">
                         </div>
+                        <!--<div class="form-group col-md-12">-->
+                            <!--<label for="avatarFile">File input</label>-->
+                            <!--<input type="file" id="avatarFile" name="avatarFile">-->
+                            <!--<p class="help-block">Example block-level help text here.</p>-->
+                        <!--</div>-->
+                        <!--<div class="form-group col-md-12">-->
+                            <!--<label for="avatarFile">File input</label>-->
+                            <!--<input type="file" id="test" name="test">-->
+                            <!--<p class="help-block">Example block-level help text here.</p>-->
+                        <!--</div>-->
+                        <!--<div class="form-group col-md-12">-->
+                            <!--<input id="taste-img" type="file" multiple class="file" data-overwrite-initial="false">-->
+                        <!--</div>-->
                         <div class="form-group col-md-12">
-                            <label for="avatarFile">File input</label>
-                            <input type="file" id="avatarFile" name="avatarFile">
-                            <p class="help-block">Example block-level help text here.</p>
+                            <label for="attachments">File input</label>
+                            <input id="attachments" type="file" name="attachments" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
                         </div>
+
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
@@ -413,6 +428,11 @@ desired effect
 
 <!-- jQuery 2.1.4 -->
 <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+<!-- file upload -->
+<script src="upload/js/fileinput.min.js" />
+<script src="upload/js/fileinput_locale_zh.js" />
+
 <!-- Bootstrap 3.3.5 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
@@ -423,9 +443,31 @@ desired effect
 
 <script src="user/user.js"></script>
 
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+<script>
+
+//    $("#taste-img").fileinput({
+//        uploadExtraData: {kvId: '10'}
+//    });
+
+    $("#file-1").fileinput({
+        uploadAsync: false,
+//        uploadUrl: '#', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jpg', 'png','gif'],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+
+</script>
+
 </body>
 </html>

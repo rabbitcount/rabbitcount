@@ -336,7 +336,8 @@ desired effect
                         <!--</div>-->
                         <div class="form-group col-md-12">
                             <label for="attachments">File input</label>
-                            <input id="attachments" type="file" name="attachments" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+                            <!--<input id="attachments" type="file" name="attachments" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">-->
+                            <input id="attachments" type="file" name="attachments" multiple class="file" data-overwrite-initial="false">
                         </div>
 
                     </div><!-- /.box-body -->
@@ -454,17 +455,20 @@ desired effect
 //        uploadExtraData: {kvId: '10'}
 //    });
 
-    $("#file-1").fileinput({
+    // file upload's home page
+    // http://plugins.krajee.com/file-input#usage
+    $("#attachments").fileinput({
         uploadAsync: false,
+        // uploadUrl 默认为null,不显示上传进度条和删除选项
 //        uploadUrl: '#', // you must set a valid URL here else you will get an error
         allowedFileExtensions : ['jpg', 'png','gif'],
         overwriteInitial: false,
         maxFileSize: 1000,
-        maxFilesNum: 10,
+        maxFilesNum: 10//,
         //allowedFileTypes: ['image', 'video', 'flash'],
-        slugCallback: function(filename) {
-            return filename.replace('(', '_').replace(']', '_');
-        }
+//        slugCallback: function(filename) {
+//            return filename.replace('(', '_').replace(']', '_');
+//        }
     });
 
 </script>

@@ -20,6 +20,8 @@ func main() {
 	routes.HandleFunc("/api/user/create", CreateUser).Methods("POST")
 	// http://localhost:8000/api/user/1
 	routes.HandleFunc("/api/user/{id}", GetUser).Methods("GET")
+	// 增加mongo接口
+	routes.HandleFunc("/api/mongo", CreateMongo).Methods("POST")
 
 	http.Handle("/", routes)
 //	routes.HandleFunc("/", Home)

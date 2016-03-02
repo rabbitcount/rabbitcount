@@ -1,0 +1,75 @@
+<div id="invoice">
+    <section class="content-header">
+        <h1>
+            票据信息
+            <small>部分</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="#"><i class="fa fa-dashboard"></i> FROM</a></li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-primary">
+            <!--<div class="box-header with-border">-->
+                <!--<h3 class="box-title">发票信息</h3>-->
+            <!--</div>-->
+            <form id="invoice-add" role="form" method="post">
+                <div class="box-body">
+                    <!--has-success-->
+                    <div class="form-group col-md-6">
+                        <label for="invoice-code">发票代码</label>
+                        <input type="text" class="form-control" id="invoice-code" name="invoiceCode" placeholder="请输入 发票代码">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="invoice-num">发票号码</label>
+                        <input type="text" class="form-control" id="invoice-num" name="invoiceNum" placeholder="请输入 发票号码">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="final-price">公司名称</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <input type="text" class="form-control" id="company-name" name="companyName" placeholder="请输入 公司名称">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="final-price">总金额</label>
+                        <!--data-inputmask='"mask": "99.99"' data-mask-->
+                        <input type="text" class="form-control" id="final-price" name="finalPrice" placeholder="请输入 总金额">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="billing-date">开票日期</label>
+                        <!--<input type="text" class="form-control" id="billing-date" name="billingDate" placeholder="请选择 开票日期">-->
+                        <!--<div class="input-group date" data-provide="datepicker">-->
+                            <!--<div class="input-group-addon">-->
+                                <!--<span class="glyphicon glyphicon-th"></span>-->
+                            <!--</div>-->
+                            <!--<input type="text" class="form-control" id="billing-date" name="billing-date" placeholder="请选择 开票日期">-->
+                        <!--</div>-->
+                        <div class="input-group date" data-provide="datepicker">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                            <input type="text" class="form-control" id="billing-date" name="billingDate" placeholder="请选择 开票日期">
+                        </div>
+                    </div>
+
+                    <!--<div class="input-group date" data-provide="datepicker">-->
+                        <!--<input type="text" class="form-control">-->
+                        <!--<div class="input-group-addon">-->
+                            <!--<span class="glyphicon glyphicon-th"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" onclick="createInvoice();">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+</div>

@@ -34,8 +34,16 @@
 //
 //var form = {};
 //form.partial = "partial/form.html"
-//
-//miniSPA.changeUrl();    //initialize
+
+var tasteForm = {}
+tasteForm.partial = "partial/user-taste.html"
+tasteForm.init = "partial/js/user-taste.js"
+
+var invoicePage = {}
+invoicePage.partial = "partial/invoice/invoice.html"
+invoicePage.init = "partial/invoice/invoice.js"
+
+miniSPA.changeUrl();    //initialize
 //
 //
 //function createUser() {

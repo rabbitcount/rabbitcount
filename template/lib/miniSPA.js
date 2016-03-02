@@ -40,6 +40,11 @@ miniSPA.changeUrl = function() {          //handle url change
         }
         else{
             settings.divDemo.innerHTML = page;
+            // gx
+            // jquery的脚本 稍后考虑降级到javascript
+            $.getScript('partial/js/user-taste.js',function(){
+                init();
+            });
             miniSPA.initFunc(url);              //load url controller
         }
     });
